@@ -29,7 +29,7 @@ def index():
 
 if __name__ == '__main__':
   #app.run(host='0.0.0.0', port=33507)
-  app.run(debug=TRUE)
+  app.run(debug=True)
 
 @app.route('/graph')
 def graph():
