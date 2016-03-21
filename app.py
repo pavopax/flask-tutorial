@@ -25,7 +25,7 @@ def index():
   if request.method=='GET':
     return render_template('index.html')
   else:
-    return redirect('/output')
+    return redirect('/graph')
 
 if __name__ == '__main__':
   #app.run(host='0.0.0.0', port=33507)
