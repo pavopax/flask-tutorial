@@ -1,18 +1,14 @@
 <!doctype html>
-<title>A short quiz</title>
+<title>Tick Stock</title>
 <link rel=stylesheet type=text/css href='{{ url_for('static',filename='style.css')}}'>
 <div class=page>
-    <h1>A short quiz</h1>
+    <h1>Tick Stock</h1>
     <div class=metanav>
-
 	<h4>
-	    [Note: CSS style is on page {{url_for('static', filename="style.css")}}]
-	    <br>
-	    You will be asked {{num}} questions.
-	    Please enter a stock market ticker and select your desired options.
+	    Please enter a stock market ticker to see its recent closing price.
 	</h4>
 
-	<form id='userinfoform_lulu' method='post' action='index' >
+	<form id='stock_form' method='post' action='index' >
 	    <p>
 		Ticker symbol: <input type='text' name='ticker' />
 	    </p>

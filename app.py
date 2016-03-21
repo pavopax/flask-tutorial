@@ -4,56 +4,43 @@ import time
 from bokeh.plotting import figure
 from bokeh.embed import components
 
-
 app = Flask(__name__)
 
+app.vars={}
 
 auth_tok = "ad1xk_Hf1MdMZpF72a_X"
 
-stock = "AAPL"
-stockq = "/".join(("WIKI", stock))
-
-
-#
-
-
-
+# lead main page to index
 @app.route('/')
 def main():
   return redirect('/index')
 
+# upon first load, 'GET' information from user
+# once submitted, go to graph page
 @app.route('/index', methods=['GET', 'POST'])
-#@app.route('/index')
 def index():
-  # data = Quandl.get(stockq, rows=20, authtoken=auth_tok, returns="pandas")
-  # df = data[['Close']]
-  # p = figure(width=500, height=500, title="Stock Graphs", x_axis_type='datetime')
-  # p.circle(x=df.index, y=df[['Close']])
-  # script, div = components(p)
-  # return render_template('graph.html', script=script, div=div)
-
   if request.method=='GET':
     return render_template('index.html')
   else:
-    return redirect('/graphx')
+    app.vars['stock'] = request.form['ticker']
+    return redirect('/graph')
 
 
 
 
-@app.route('/graphx')
-def graphx():
-  #return render_template('end.html')
-
+@app.route('/graph')
+def graph():
+  stock = app.vars['stock']
+  stockq = "/".join(("WIKI", stock))
   data = Quandl.get(stockq, rows=20, authtoken=auth_tok, returns="pandas")
   df = data[['Close']]
-  p = figure(width=500, height=500, title="Stock Graphs", x_axis_type='datetime')
+  p = figure(width=700, height=500, title=stock, x_axis_type='datetime')
   p.circle(x=df.index, y=df[['Close']])
   script, div = components(p)
   return render_template('graph.html', script=script, div=div)
 
 
 if __name__ == '__main__':
-  #app.run(host='0.0.0.0', port=33507)
   app.run(debug=True)
   
 
