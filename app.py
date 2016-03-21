@@ -33,12 +33,12 @@ if __name__ == '__main__':
 
 @app.route('/graph')
 def graph():
-  # data = Quandl.get(stockq, rows=20, authtoken=auth_tok, returns="pandas")
-  # df = data[['Close']]
-  # p = figure(width=500, height=500, title="Stock Graphs", x_axis_type='datetime')
-  # p.circle(x=df.index, y=df[['Close']])
-  # script, div = components(plot)
-  #return render_template('graph.html', script=script, div=div)
-  return render_template('graph.html')
+  data = Quandl.get(stockq, rows=20, authtoken=auth_tok, returns="pandas")
+  df = data[['Close']]
+  p = figure(width=500, height=500, title="Stock Graphs", x_axis_type='datetime')
+  p.circle(x=df.index, y=df[['Close']])
+  script, div = components(plot)
+  return render_template('graph.html', script=script, div=div)
+
 
   
