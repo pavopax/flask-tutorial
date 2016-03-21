@@ -38,6 +38,7 @@ def graph():
   # p = figure(width=500, height=500, title="Stock Graphs", x_axis_type='datetime')
   # p.circle(x=df.index, y=df[['Close']])
   # script, div = components(plot)
-  return render_template('graph.html', script=script, div=div)
+  #return render_template('graph.html', script=script, div=div)
+  return render_template('graph.html')
 
   
